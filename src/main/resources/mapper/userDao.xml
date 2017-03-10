@@ -1,0 +1,41 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skynet.dao.UserDao">
+    <cache/>
+    <select id="queryById" parameterType="long" resultType="UserEntity">
+        SELECT
+            USER_ID,
+            USER_NAME,
+            PASSWORD,
+            CREATE_TIME
+        FROM USER
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <select id="queryAll" resultType="UserEntity">
+        SELECT
+            USER_ID,
+            USER_NAME,
+            PASSWORD,
+            CREATE_TIME
+        FROM USER
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM user
+        WHERE USER_ID = #{userId}
+    </delete>
+
+    <update id="updateUser" parameterType="UserEntity">
+        UPDATE user
+        SET USER_NAME = #{userName}, PASSWORD = #{password}
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <insert id="insertUser" parameterType="UserEntity">
+        INSERT INTO user (USER_NAME, PASSWORD) VALUES (#{userName}, #{password})
+    </insert>
+
+</mapper>
