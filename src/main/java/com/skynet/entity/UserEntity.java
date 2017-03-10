@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class UserEntity implements Serializable{
 
-    private long userId;
+    private Long userId;
     private String userName;
     private String password;
     private Date createTime;
@@ -21,7 +21,7 @@ public class UserEntity implements Serializable{
         this.password = password;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 

@@ -4,6 +4,7 @@ import com.skynet.entity.UserEntity;
 import com.skynet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class UserController {
         if(userId != null){
             UserEntity user = userService.getUser(userId);
             System.out.println(user);
-            model.addAttribute("user", user);
+            model.addAttribute("userEntity", user);
         }
     }
 
@@ -52,6 +53,7 @@ public class UserController {
         return "detail";
     }
 
+    @Transactional
     @RequestMapping(value = "/{userId}/delete",method = RequestMethod.DELETE)
     public String delete(@PathVariable("userId") Long userId){
         if (userId == null) {
@@ -65,10 +67,18 @@ public class UserController {
         return "redirect:/user/list";
     }
 
+    @Transactional
     @RequestMapping(value = "/edit",method = RequestMethod.PUT)
     public String editUser(UserEntity user){
         System.out.println(user);
+        userService.saveUser(user);
         return "redirect:/user/list";
+    }
+
+    @RequestMapping(value = "/input",method = RequestMethod.GET)
+    public String inputUser(Model model){
+        model.addAttribute("user",new UserEntity());
+        return "detail";
     }
 
 

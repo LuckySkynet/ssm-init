@@ -9,10 +9,12 @@ import java.util.List;
  */
 public interface UserService {
 
-    UserEntity getUser(long userId);
+    UserEntity getUser(Long userId);
 
-    List<UserEntity> getUsers(int offset, int limit);
+    List<UserEntity> getUsers(Integer offset, Integer limit);
 
-    void deleteUser(long userId);
+    void deleteUser(Long userId);
+
+    void saveUser(UserEntity user);
 
 }

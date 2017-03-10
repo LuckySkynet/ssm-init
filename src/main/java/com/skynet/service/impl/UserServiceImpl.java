@@ -22,17 +22,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity getUser(long userId) {
+    public UserEntity getUser(Long userId) {
         return userDao.queryById(userId);
     }
 
     @Override
-    public List<UserEntity> getUsers(int offset, int limit) {
+    public List<UserEntity> getUsers(Integer offset, Integer limit) {
         return userDao.queryAll(offset, limit);
     }
 
     @Override
-    public void deleteUser(long userId) {
+    public void deleteUser(Long userId) {
         userDao.deleteById(userId);
+    }
+
+    @Override
+    public void saveUser(UserEntity user) {
+        if (user.getUserId() == null) {
+            userDao.insertUser(user);
+        } else {
+            userDao.updateUser(user);
+        }
     }
 }

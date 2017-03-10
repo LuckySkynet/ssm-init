@@ -50,7 +50,9 @@
                         </td>
                     </tr>
                 </c:forEach>
-
+                <a  class="btn btn-default" href="/user/input" data-toggle="tooltip" data-placement="right" title="新增用户">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                </a>
                 </tbody>
             </table>
         </div>
@@ -61,4 +63,10 @@
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+    });
+</script>
 </html>
