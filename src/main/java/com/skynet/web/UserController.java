@@ -35,7 +35,7 @@ public class UserController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        List<UserEntity> users = userService.getUsers(0, 5);
+        List<UserEntity> users = userService.getUsers(0, 10);
         model.addAttribute("users", users);
         return "list";
     }
@@ -71,6 +71,13 @@ public class UserController {
     @RequestMapping(value = "/edit",method = RequestMethod.PUT)
     public String editUser(UserEntity user){
         System.out.println(user);
+        userService.saveUser(user);
+        return "redirect:/user/list";
+    }
+
+    @Transactional
+    @RequestMapping(value = "/edit",method = RequestMethod.POST)
+    public String addUser(UserEntity user){
         userService.saveUser(user);
         return "redirect:/user/list";
     }

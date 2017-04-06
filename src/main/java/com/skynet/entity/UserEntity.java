@@ -8,6 +8,8 @@ import java.util.Date;
  */
 public class UserEntity implements Serializable{
 
+    private static final Long serialVersionUID=1L;
+
     private Long userId;
     private String userName;
     private String password;

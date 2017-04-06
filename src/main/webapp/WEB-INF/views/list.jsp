@@ -44,7 +44,7 @@
                             <a class="btn btn-info" href="/user/${user.userId}/detail">Link</a>
                         </td>
                         <td>
-                            <a class="btn btn-warning" href="/user/${user.userId}/delete">
+                            <a class="btn btn-warning delete" href="/user/${user.userId}/delete">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                         </td>
@@ -58,6 +58,9 @@
         </div>
     </div>
 </div>
+<form method="post" id="form">
+    <input type="hidden" name="_method" value="DELETE"/>
+</form>
 </body>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -67,6 +70,13 @@
 <script>
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
+
+        $(".delete").click(function(){
+            var href = $(this).attr("href");
+            console.info(href);
+            $("#form").attr("action", href).submit();
+            return false;
+        });
     });
 </script>
 </html>
